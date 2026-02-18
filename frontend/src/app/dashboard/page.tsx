@@ -562,9 +562,44 @@ export default function Dashboard() {
 
 
 
-      <div className="h-[50vh] w-screen flex items-center justify-center backdrop-blur-md bg-blue-11/20 rounded">
-        <div className="h-full w-[80%] flex flex-col items-center justify-center text-center">
-          <div className="h-[20%] w-full flex items-center justify-center text-5xl font-semibold text-grey-5"></div>
+      <div className="h-[50vh] w-screen flex items-center justify-center relative z-10 backdrop-blur-md bg-blue-11/20 rounded-xl">
+        <div className={`h-full w-screen flex flex-col items-center justify-center ${cg.className}`}>
+          <div className="h-[85%] w-full flex items-center justify-center text-center">
+            <div className="relative h-[81%] w-[15%] border-r-1 border-white flex flex-col items-center justify-center text-5xl font-semibold">
+              <img src={`/logos/logo.png`} alt="" className="w-auto h-auto object-contain"/>
+              <span className="text-white text-[77%] font-normal">Zenith Vapour Cast</span>
+            </div>
+            <div className="h-[77%] w-[85%] flex items-center justify-center text-[127%] font-bold text-white">
+              <div className="h-[81%] w-[7.5%] flex flex-col items-start justify-center gap-[2%] font-bold">
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold">About</span>
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold">API</span>
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold">Pricing</span>
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold">Contact</span>
+              </div>
+              <div className="h-[81%] w-[15%] flex flex-col items-start justify-center gap-[2%] font-bold">
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold">Methodology</span>
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold">Regional GNSS HeatMap</span>
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold">Live Data Preview</span>
+              </div>
+              <div className="h-[81%] w-[25%] flex flex-col items-start justify-center gap-[2%] font-bold">
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold">API Request History</span>
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold">Request PW Data</span>
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold">Get PW By Features</span>
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold">Get PW For Custom Coordinates (Interpolation)</span>
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold">Get Error in Interpolation for PW</span>
+              </div>
+              <div className="h-[81%] w-[45%] flex flex-col items-start justify-center gap-[2%] font-bold">
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold">Team</span>
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold"><strong>Dharyansh Achlas - &nbsp;</strong> Team Lead | FullStack Development, UI/UX Development, Model Integration</span>
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold"><strong>Kriti Khanijo - &nbsp;</strong> AIML Model Engineer | GBR Model Development, Model optimization </span>
+                <span className="cursor-pointer hover:text-blue-11 font-extrabold"><strong>Mooksh Jain - &nbsp;</strong> AIML Model Engineer | GPR Model Development, ML pipeline </span>
+              </div>
+            </div>
+          </div>
+          <div className="h-[15%] w-[81%] flex items-center justify-center text-center border-t-1 border-white text-white italic text-[117%]">
+              <strong>© 2026 Zenith Vapour Cast. All Rights Reserved. </strong>&nbsp;
+              Unauthorized use and/or duplication of this material without express and written permission is strictly prohibited.
+          </div>
         </div>
       </div>
     </>
