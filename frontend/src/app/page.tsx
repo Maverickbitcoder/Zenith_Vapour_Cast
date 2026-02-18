@@ -23,15 +23,72 @@ interface LocationMarkerProps {
 }
 
 // LocationMarker component with proper typing
+// function LocationMarker({ onLocationSelect, position }: LocationMarkerProps) {
+//   useMapEvents({
+//     click(e: { latlng: LatLng }) {
+//       const { lat, lng } = e.latlng;
+//       onLocationSelect(lat, lng);
+//     },
+//   });
+
+//   return position ? <Marker position={position} /> : null;
+// }
+
+// LocationMarker component with proper typing
 function LocationMarker({ onLocationSelect, position }: LocationMarkerProps) {
-  useMapEvents({
+  const map = useMapEvents({
     click(e: { latlng: LatLng }) {
       const { lat, lng } = e.latlng;
       onLocationSelect(lat, lng);
     },
   });
 
-  return position ? <Marker position={position} /> : null;
+  // Create a custom div icon with a text dot
+  useEffect(() => {
+    if (position && map) {
+      // Remove any existing custom marker
+      const existingMarker = document.querySelector('.custom-dot-marker');
+      if (existingMarker) existingMarker.remove();
+
+      // Create a new div for the dot
+      const markerDiv = document.createElement('div');
+      markerDiv.className = 'custom-dot-marker';
+      markerDiv.innerHTML = '📍';
+      markerDiv.style.position = 'absolute';
+      markerDiv.style.color = '#FF0000';
+      markerDiv.style.fontSize = '24px';
+      markerDiv.style.fontWeight = 'bold';
+      markerDiv.style.textShadow = '0 0 2px white';
+      markerDiv.style.transform = 'translate(-50%, -50%)';
+      markerDiv.style.pointerEvents = 'none';
+      markerDiv.style.zIndex = '1000';
+
+      // Add to map container
+      const mapContainer = map.getContainer();
+      mapContainer.appendChild(markerDiv);
+
+      // Update position on map move
+      const updatePosition = () => {
+        const point = map.latLngToContainerPoint([position[0], position[1]]);
+        markerDiv.style.left = point.x + 'px';
+        markerDiv.style.top = point.y + 'px';
+      };
+
+      updatePosition();
+      map.on('move', updatePosition);
+      map.on('zoom', updatePosition);
+
+      return () => {
+        map.off('move', updatePosition);
+        map.off('zoom', updatePosition);
+        if (markerDiv.parentNode) {
+          markerDiv.parentNode.removeChild(markerDiv);
+        }
+      };
+    }
+  }, [position, map]);
+
+  return null;
 }
 
 export default function Home() {

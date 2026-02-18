@@ -77,16 +77,16 @@ interface LocationMarkerProps {
 }
 
 // LocationMarker component with proper typing
-function LocationMarker({ onLocationSelect, position }: LocationMarkerProps) {
-  useMapEvents({
-    click(e: { latlng: LatLng }) {
-      const { lat, lng } = e.latlng;
-      onLocationSelect(lat, lng);
-    },
-  });
+// function LocationMarker({ onLocationSelect, position }: LocationMarkerProps) {
+//   useMapEvents({
+//     click(e: { latlng: LatLng }) {
+//       const { lat, lng } = e.latlng;
+//       onLocationSelect(lat, lng);
+//     },
+//   });
 
-  return position ? <Marker position={position} /> : null;
-}
+//   return position ? <Marker position={position} /> : null;
+// }
 
 
 
