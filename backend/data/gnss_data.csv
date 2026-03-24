@@ -1,0 +1,2 @@
+Year,Month,Day,Hour,Minute,Second,Date (ISO Format),Station Latitude,Station Longitude,Station Elevation,Timestamp (Epoch),ZWD Observation,Satellite Azimuth,Satellite Elevation,Temperature (°C),Pressure (hPa),Humidity (%)
+2025,9,8,10,2,15,2025-09-08T10:02:15.000Z,40.7128,-74.006,10,1757325735,10.2,135,45,11.5,1021.1,83

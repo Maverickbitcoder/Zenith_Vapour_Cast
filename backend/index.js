@@ -11,10 +11,11 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const PORT = process.env.PORT
+const CORS_ORIGIN = process.env.CORS_ORIGIN || 'http://localhost:3000'
 
-// allowing reqs from frontend origin
+// allowing reqs from frontend origin (configured via CORS_ORIGIN env var)
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: CORS_ORIGIN,
   credentials: true, // if using cookies or auth headers
   allowedHeaders: ['Authorization', 'Content-Type'],
 }));
@@ -25,6 +26,11 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+});
 
 // POST /api/auth -> auth.js (user auth login)
 app.use('/api/auth', authjs)

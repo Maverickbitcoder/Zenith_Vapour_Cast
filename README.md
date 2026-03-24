@@ -345,10 +345,9 @@ codebase/
 
 | Name | Role | Responsibilities |
 |------|------|------------------|
-| **Shreyansh Trivedi** | Frontend Developer | ZenithVapourCast Frontend Development, UI/UX |
 | **Mooksh Jain** | AIML Model Engineer | GPR Model Development, ML pipeline |
 | **Kriti Khanijo** | AIML Model Engineer | GBR Model Development, Model optimization |
-| **Dharyansh Achlas** | Team Lead | Backend Development, Model Integration, Architecture |
+| **Dharyansh Achlas** | Team Lead | FullStack Development,ZenithVapourCast UI/UX Development, Model Integration, Architecture |
 
 ---
 

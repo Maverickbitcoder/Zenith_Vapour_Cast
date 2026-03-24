@@ -1,0 +1,93 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+    container_name: zenith-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env.docker
+    environment:
+      - PORT=5000
+      - NODE_ENV=production
+      - DB_HOST=${DB_HOST:-postgres}
+      - DB_PORT=${DB_PORT:-5432}
+      - DB_NAME=${DB_NAME:-zenith}
+      - DB_USER=${DB_USER:-zenithuser}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - CORS_ORIGIN=http://frontend:3000
+    volumes:
+      - backend-data:/app/data
+      - backend-uploads:/app/uploads
+    restart: unless-stopped
+    networks:
+      - zenith-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+    container_name: zenith-frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./frontend/.env.docker
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:5000
+      - NODE_ENV=production
+    volumes:
+      - next-cache:/app/.next
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - zenith-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Optional PostgreSQL service (uncomment if needed)
+  # postgres:
+  #   image: postgres:16-alpine
+  #   container_name: zenith-postgres
+  #   environment:
+  #     - POSTGRES_DB=${DB_NAME:-zenith}
+  #     - POSTGRES_USER=${DB_USER:-zenithuser}
+  #     - POSTGRES_PASSWORD=${DB_PASSWORD}
+  #   volumes:
+  #     - postgres-data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - zenith-network
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-zenithuser}"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+
+volumes:
+  backend-data:
+  backend-uploads:
+  next-cache:
+  # postgres-data:
+
+networks:
+  zenith-network:
+    driver: bridge
+

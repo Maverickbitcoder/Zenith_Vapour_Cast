@@ -1,0 +1,133 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/backend/node_modules
+/backend/.env
+/frontend/.env
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+models/A/yield_prediction/RandomForestRegression.pkl
+
+# Environment variable files
+.env
+.env.*
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.staging
+.env.staging.local
+.env.production
+.env.production.local
+.next.env
+.vercel.env
+*.env.swp
+*.env.tmp
+*.env.backup
+*.env.old
+
+# Frontend/backend split
+/frontend/.env
+/frontend/.env.*
+/backend/.env
+/backend/.env.*
+
+# Base environment files
+.env
+.env.*
+
+# Specific known variants
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.staging
+.env.staging.local
+.env.production
+.env.production.local
+
+# Framework/Tooling-specific envs
+.next.env        # Next.js (uncommon, just in case)
+.vercel.env      # Vercel or similar deployments
+*.env.example    # Optional: if you want to ignore shared templates too
+
+# Editor swap/temp files (common when editing env files)
+*.env.swp
+*.env.tmp
+*.env.backup
+*.env.old
+
+
+# brew install git-filter-repo
+# git filter-repo --path backend/node_modules --path frontend/node_modules --path models/A/yield_prediction/RandomForestRegression.pkl --invert-paths
+# git filter-repo --force \
+#   --path backend/node_modules \
+#   --path frontend/node_modules \
+#   --path models/A/yield_prediction/RandomForestRegression.pkl \
+#   --invert-paths
+# git push --force origin main
+
+
+# git config --global http.postBuffer 524288000
+# git config --global http.lowSpeedLimit 0
+# git config --global http.lowSpeedTime 999999
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+env/
+
+# Ignore virtual environments in any subdirectory
+venv/
+.venv/
+env/
+
+# Ignore all virtual environments anywhere
+**/venv/
+**/.venv/
+**/env/
+
+**/.cdsapirc
+**/.cdsapirc/
+**.cdsapirc
+.cdsapirc
