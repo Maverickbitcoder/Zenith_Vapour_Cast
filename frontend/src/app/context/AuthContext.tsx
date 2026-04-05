@@ -59,6 +59,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   // Check localStorage token on mount (in-house)
   // loading from localStorage (on client only)
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const storedUser = localStorage.getItem('user');
     const storedToken = localStorage.getItem('token');
     if (storedUser && storedToken) {
@@ -69,11 +70,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     if (user){localStorage.setItem('user', JSON.stringify(user));}
     else{localStorage.removeItem('user');}
   }, [user]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     if (token){localStorage.setItem('token', token);}
     else{localStorage.removeItem('token');}
   }, [token]);
