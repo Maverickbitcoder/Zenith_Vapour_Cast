@@ -45,7 +45,5 @@ app.use('/api/pw/by', pwbyjs)
 app.use('/api', apijs)
 
 
-
-
-
-app.listen(PORT, ()=>{console.log(`backend server running at http://localhost:${PORT}`)})
+console.log(`cors origin: ${CORS_ORIGIN}`);
+app.listen(PORT, ()=>{console.log(`backend server running`)});
