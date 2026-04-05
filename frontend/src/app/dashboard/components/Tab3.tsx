@@ -3,7 +3,7 @@ import { Cinzel_Decorative, Instrument_Serif, Cormorant_Garamond } from "next/fo
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
-import { useAuth } from "@/app/context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import MapWrapper from "./MapWrapper";
 const cg = Cormorant_Garamond({ subsets: ['latin'], weight: ['400'] });
 

@@ -1,4 +1,4 @@
-import { useAuth } from "@/app/context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { useSession } from "next-auth/react";
 import { motion } from 'framer-motion';
 import { Cinzel_Decorative, Instrument_Serif, Cormorant_Garamond } from "next/font/google";
