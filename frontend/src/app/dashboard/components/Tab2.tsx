@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { Cormorant_Garamond } from "next/font/google";
 const cg = Cormorant_Garamond({ subsets: ['latin'], weight: ['400'] });
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function Tab1(){
     const { api, rqsts, token, history, setHistory } = useAuth()
     const { data: session} = useSession();
@@ -12,7 +14,7 @@ export default function Tab1(){
 
     useEffect(() => {
         const fetchHist = async () => {
-            const res = await fetch('http://localhost:3001/api/history', {
+            const res = await fetch(`${API_URL}/api/history`, {
                 method: 'POST', headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ apiKey: api })
             });

@@ -11,6 +11,8 @@ import Alert from "../components/Alert";
 import Loading from "../components/Loading";
 import { useSession, signIn, signOut } from "next-auth/react";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 import { Cinzel_Decorative, Instrument_Serif, Cormorant_Garamond } from "next/font/google";
 const cg = Cormorant_Garamond({ subsets: ['latin'], weight: ['400'] });
 
@@ -57,7 +59,7 @@ export default function Auth() {
         form.forEach((value, key) => {
             if (typeof value === 'string'){payload.append(key, value);}
         });
-        const response = await fetch('http://localhost:3001/api/auth', {
+        const response = await fetch(`${API_URL}/api/auth`, {
             method: 'POST',
             headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

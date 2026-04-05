@@ -13,6 +13,7 @@ import Alert from "../components/Alert";
 import Header from "../components/Header";
 import 'leaflet/dist/leaflet.css';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 import { Cinzel_Decorative, Instrument_Serif, Cormorant_Garamond } from "next/font/google";
 import Tab1 from "./components/Tab1";
@@ -187,7 +188,7 @@ export default function Dashboard() {
       formData.append("includeMeteoData", includeMeteoData.toString());
       formData.append("processAllSatellites", processAllSatellites.toString());
 
-      const response = await fetch("http://localhost:3001/api/pw/by/rinex", {
+      const response = await fetch(`${API_URL}/api/pw/by/rinex`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${reqToken}`,
@@ -272,7 +273,7 @@ export default function Dashboard() {
 
       const reqToken = token || session?.accessToken;
       
-      const response = await fetch("http://localhost:3001/api/pw/by/features", {
+      const response = await fetch(`${API_URL}/api/pw/by/features`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -366,7 +367,7 @@ export default function Dashboard() {
       setIsProcessingInterpolation(true);
       const reqToken = token || session?.accessToken;
       
-      const response = await fetch("http://localhost:3001/api/pw/by/interpolation", {
+      const response = await fetch(`${API_URL}/api/pw/by/interpolation`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -432,7 +433,7 @@ export default function Dashboard() {
       const reqToken = token || session?.accessToken;
       
       // First, get the interpolated PW value
-      const interpolationResponse = await fetch("http://localhost:3001/api/pw/by/interpolation", {
+      const interpolationResponse = await fetch(`${API_URL}/api/pw/by/interpolation`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

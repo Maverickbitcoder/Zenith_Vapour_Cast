@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { useAuth } from "../../context/AuthContext";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 // import MapWrapper from "./MapWrapper";
 import dynamic from "next/dynamic";
 const MapWrapper = dynamic(() => import("./MapWrapper"), { ssr: false }); 
@@ -125,7 +127,7 @@ export default function Tab1(){
                 dateString: featuresData.dateString || new Date().toISOString()
             }
         };
-        const response = await fetch("http://localhost:3001/api/features", {
+        const response = await fetch(`${API_URL}/api/features`, {
             method: "POST",
             headers: {
             "Content-Type": "application/json",
@@ -214,7 +216,7 @@ export default function Tab1(){
         
         try {
         setIsProcessingInterpolation(true);
-        const response = await fetch("http://localhost:3001/api/interpolation", {
+        const response = await fetch(`${API_URL}/api/interpolation`, {
             method: "POST",
             headers: {"Content-Type": "application/json",},
             body: JSON.stringify({
@@ -257,7 +259,7 @@ export default function Tab1(){
         const reqToken = token || session?.accessToken;
         
         // First, get the interpolated PW value
-        const errRes = await fetch("http://localhost:3001/api/error", {
+        const errRes = await fetch(`${API_URL}/api/error`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

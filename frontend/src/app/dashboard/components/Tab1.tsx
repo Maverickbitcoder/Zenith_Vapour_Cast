@@ -5,6 +5,8 @@ import { Cinzel_Decorative, Instrument_Serif, Cormorant_Garamond } from "next/fo
 import { useEffect, useState } from "react";
 const cg = Cormorant_Garamond({ subsets: ['latin'], weight: ['400'] });
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function Tab1(){
     const { api, rqsts, token, setApi, setRqsts } = useAuth()
     const { data: session} = useSession();
@@ -13,7 +15,7 @@ export default function Tab1(){
 
     useEffect(() => {
         const fetchApi = async () => {
-            const result = await fetch('http://localhost:3001/api/get', {
+            const result = await fetch(`${API_URL}/api/get`, {
                 method: 'POST', headers: {Authorization: `Bearer ${reqToken}`,}
             });
             if(!result.ok){throw new Error('Error getting api')};
@@ -26,7 +28,7 @@ export default function Tab1(){
 
 
     const handleGetAPI = async () => {
-        const res = await fetch('http://localhost:3001/api/init', {
+        const res = await fetch(`${API_URL}/api/init`, {
             method: "POST",
             headers: {Authorization: `Bearer ${reqToken}`}
         })

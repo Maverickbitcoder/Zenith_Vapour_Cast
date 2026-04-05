@@ -13,6 +13,9 @@ import { useAuth } from "./context/AuthContext";
 import { useSession } from "next-auth/react";
 import Working from "./components/Working";
 
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 const cg = Cormorant_Garamond({ subsets: ['latin'], weight: ['400'] });
 
 // Dynamically import MapSection with no SSR
@@ -275,7 +278,7 @@ export default function Home() {
     
     try {
       setIsProcessingInterpolation(true);
-      const response = await fetch("http://localhost:3001/api/pw/by/interpolation", {
+      const response = await fetch(`${API_URL}/api/pw/by/interpolation`, {
         method: "POST",
         headers: {"Content-Type": "application/json",},
         body: JSON.stringify({
