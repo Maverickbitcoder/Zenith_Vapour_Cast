@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { useAuth } from "../../context/AuthContext";
-import MapWrapper from "./MapWrapper";
+
+// import MapWrapper from "./MapWrapper";
+import dynamic from "next/dynamic";
+const MapWrapper = dynamic(() => import("./MapWrapper"), { ssr: false }); 
+
 const cg = Cormorant_Garamond({ subsets: ['latin'], weight: ['400'] });
 
 type ErrorRes = {
